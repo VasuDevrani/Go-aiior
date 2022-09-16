@@ -62,6 +62,97 @@ func main() {
 }
 ```
 
+### Arrays and Slices in go
+- arrays
+
+```
+	var array = [50]float32{1, 2, 4};
+	// intializes the array with 0 or empty strings in case of string array
+	var array2 [20]int;
+
+	array2[0] = 10;
+	array[5] = 30
+
+	fmt.Println(array);
+	fmt.Println(len(array2));
+```
+- slices
+
+```
+	var slices = []int{1, 2, 4};
+	var slices2 []int;
+
+	slices = append(array, 20);
+	slices2 = append(array2, 30);
+
+	fmt.Println(slices);
+	fmt.Println(len(slices2));
+```
+
+### loops and conditionals
+- for loop
+
+```
+for {
+	var name string;
+
+	fmt.Scan(&name);
+	fmt.Println(name);
+}
+var arry = []int{1,2,3,4,5}
+
+for index, value := range arry{
+	fmt.Println(value, " at index ", index);
+}
+```
+- if else
+	- uses && || operators
+```
+if len(name) == 0{
+	break
+}else if name == "ram"{
+	continue
+}else{
+	var ind = 0;
+	for ind < len(name){
+		fmt.Println(name[ind])
+		ind++
+	}
+}
+```
+
+## ⭐ for keeping a variable not in use
+```
+// no problem as index is not used here
+for _, value := range array{
+	fmt.Println(value);
+}
+```
+
+### string methods
+```
+import (
+	"fmt",
+	s "strings"
+)
+var p = fmt.Println
+
+p("Contains:  ", s.Contains("test", "es"))
+p("Count:     ", s.Count("test", "t"))
+p("HasPrefix: ", s.HasPrefix("test", "te"))
+p("HasSuffix: ", s.HasSuffix("test", "st"))
+p("Index:     ", s.Index("test", "e"))
+p("Join:      ", s.Join([]string{"a", "b"}, "-"))
+p("Repeat:    ", s.Repeat("a", 5))
+p("Replace:   ", s.Replace("foo", "o", "0", -1))
+p("Replace:   ", s.Replace("foo", "o", "0", 1))
+p("Split:     ", s.Split("a-b-c-d-e", "-"))
+p("ToLower:   ", s.ToLower("TEST"))
+p("ToUpper:   ", s.ToUpper("test"))
+```
+
+
+
 ## RESOURCES
 - https://go.dev/doc/ - official docs
 - https://www.youtube.com/watch?v=yyUHQIec83I&t=2291s&ab_channel=TechWorldwithNana - YouTube, Thanks Nana
