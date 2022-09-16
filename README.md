@@ -18,8 +18,9 @@
       fmt.Println("hello world");
     }
   ```
- ## GENERAL INFO
- - Go is a statically typed language
+## GENERAL INFO
+- Go is a statically typed language
+- The answer is no: Go is neither a functional nor an object-oriented language. Rather, it is a procedural language similar to C or even Perl (before it got an object system).
 
 ### LEXER
 responsible for handling the semi-colons and other syntax stuff
@@ -104,6 +105,12 @@ var arry = []int{1,2,3,4,5}
 for index, value := range arry{
 	fmt.Println(value, " at index ", index);
 }
+
+for i := 0; i < 2; i++ {
+        for j := 0; j < 3; j++ {
+            i + j
+        }
+    }
 ```
 - if else
 	- uses && || operators
@@ -118,6 +125,20 @@ if len(name) == 0{
 		fmt.Println(name[ind])
 		ind++
 	}
+}
+```
+- switch
+
+```
+switch expression {
+case x:
+   // code block
+case y:
+   // code block
+case z:
+...
+default:
+   // code block
 }
 ```
 
@@ -151,6 +172,46 @@ p("ToLower:   ", s.ToLower("TEST"))
 p("ToUpper:   ", s.ToUpper("test"))
 ```
 
+### functions
+```
+func myMessage() {
+  fmt.Println("I just got executed!")
+}
+func newMessage(name string){
+
+}
+
+//define data type when function returns something
+func moreFunnction(name string, age uint, books []string) []string{
+}
+
+func main() {
+  myMessage()
+  newMessage("golang")
+}
+```
+- multiple returns from a function
+```
+name, age, address = getUserDetails();
+
+func getUserDetails() (string, uint, string){
+//take inputs
+return useName, userAge, userAddress
+}
+```
+
+## Multiple file structure
+- go files within a same package or folder are interconnected and should work under a single package
+- Example inside folder 'hello';
+  - ```
+  	go.mod
+	helper.go
+	main.go
+	utils.go
+    ```
+- the variables defined outside functions inside these files are open to other files as well
+- a function present in helper.go can be used in main.go without any sort of import statements
+- to run file ```go run main.go helper.go``` or ```go run .```
 
 
 ## RESOURCES
