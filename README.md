@@ -200,6 +200,40 @@ return useName, userAge, userAddress
 }
 ```
 
+### Maps
+```
+var MAP = make(map[string]string)
+var MAP1 map[string]string
+MAP["name"] = "vasu"
+
+//list of maps
+
+var mapList []map[string]string
+var mapListOne = make([]map[string]string, 0) //, 0 is for initialization, not required
+```
+```
+    m := make(map[string]int)
+
+    m["k1"] = 7
+    m["k2"] = 13
+
+    fmt.Println("map:", m)
+
+    v1 := m["k1"]
+    fmt.Println("v1: ", v1)
+
+    fmt.Println("len:", len(m))
+
+    delete(m, "k2")
+    fmt.Println("map:", m)
+
+    _, prs := m["k2"]
+    fmt.Println("prs:", prs)
+
+    n := map[string]int{"foo": 1, "bar": 2}
+    fmt.Println("map:", n)
+```
+
 ## Multiple file structure
 - go files within a same package or folder are interconnected and should work under a single package
 - Example inside folder 'hello';
@@ -213,6 +247,19 @@ return useName, userAge, userAddress
 - a function present in helper.go can be used in main.go without any sort of import statements
 - to run file ```go run main.go helper.go``` or ```go run .```
 
+## Multiple package structure
+- while we use anything from a package it needs to be imported first that too varies depending type of package
+- create a folder say 'goPrograms' with main.go and mode file with a package name say 'hello'
+- for new package, create a new folder say 'helper', create files in it.
+- while using a package exports in another package, always import as
+```
+import {
+   "fmt",
+   "hello/helper"
+}
+```
+- for export variables or functions write them in capitalized form like ```GetData()```
+- for import ```helper.GetData()```
 
 ## RESOURCES
 - https://go.dev/doc/ - official docs
