@@ -20,6 +20,8 @@
   ```
 ## GENERAL INFO
 - Go is a statically typed language
+- Cuncurrency is the important need for deploying servers, only languages like c++, java provides this
+- Go comes handy as its easy to write like javascript and static, concurrent like c++
 - The answer is no: Go is neither a functional nor an object-oriented language. Rather, it is a procedural language similar to C or even Perl (before it got an object system).
 
 ### LEXER
@@ -234,6 +236,23 @@ var mapListOne = make([]map[string]string, 0) //, 0 is for initialization, not r
     fmt.Println("map:", n)
 ```
 
+### Structs
+```
+type UserData struct {
+name string
+age uint
+email string
+}
+
+var userOne = UserData {
+name: "vasu",
+age: 20,
+email: "vasu4arodev@gmail.com"
+}
+
+fmt.Println(userOne.name)
+```
+
 ## Multiple file structure
 - go files within a same package or folder are interconnected and should work under a single package
 - Example inside folder 'hello';
@@ -260,6 +279,25 @@ import {
 ```
 - for export variables or functions write them in capitalized form like ```GetData()```
 - for import ```helper.GetData()```
+
+## Concurrency
+- This is like creating a asynchronous path for long duartion work like fetching data from api or sending automated mails
+- Lets say we have a function ```sendTicket``` that takes a long 10 sec duration, when multiple users are on the application this could block the go program thread flow and block other users from using the app concurrently
+- Go provides a way to separate this blocking task in a separate thread and get its results when its completed, deleting the thread as well
+- This way if user ```A``` enters the app, fills details and then reaches this blocking task, this would be separated in separate thread and another user ```B``` can use the application
+- just use ```go``` keyword to make this happen
+```
+go getData();
+
+//blocking code
+func getData(){
+
+}
+```
+### WaitGroups
+- concurrency could lead to exit of application without waiting for all threads to complete
+- thereby we use wautgroups that keeps app running until unless all added concurrent threads are done'
+- https://gobyexample.com/waitgroups
 
 ## RESOURCES
 - https://go.dev/doc/ - official docs
