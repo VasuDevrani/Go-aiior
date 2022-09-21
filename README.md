@@ -299,6 +299,10 @@ func getData(){
 - thereby we use wautgroups that keeps app running until unless all added concurrent threads are done'
 - https://gobyexample.com/waitgroups
 
+## Gorilla mux and CRUD operations using GoLang
+- The name mux stands for "HTTP request multiplexer". Like the standard http.ServeMux, mux.Router matches incoming requests against a list of registered routes and calls a handler for the route that matches the URL or other conditions. 
+- https://github.com/gorilla/mux
+
 ## RESOURCES
 - https://go.dev/doc/ - official docs
 - https://www.youtube.com/watch?v=yyUHQIec83I&t=2291s&ab_channel=TechWorldwithNana - YouTube, Thanks Nana
