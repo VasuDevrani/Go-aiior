@@ -304,6 +304,41 @@ import {
 - for export variables or functions write them in capitalized form like ```GetData()```
 - for import ```helper.GetData()```
 
+### http calls
+- get request
+```
+import (
+   "fmt"
+   "net/http"
+)
+
+response, err := http.Get("http://hello.com")
+if(err != nil)
+fmt.Println("error occured", err)
+```
+- url decoding
+```
+const url = "http://local_mania.org"
+func main(){
+	result, _ := url.Parse(url)
+	fmt.Println(url.Scheme)
+	fmt.Println(url.Host)
+	fmt.Println(url.RawQuery)
+	
+	var qParams = url.query() //gives the map of queries 
+}
+```
+- url contruction
+```
+var url = &url.URL{
+   Scheme: "https",
+   Host: "",
+   Path: ""
+}
+
+anotherURL = url.String();
+```
+
 ## Concurrency
 - This is like creating a asynchronous path for long duartion work like fetching data from api or sending automated mails
 - Lets say we have a function ```sendTicket``` that takes a long 10 sec duration, when multiple users are on the application this could block the go program thread flow and block other users from using the app concurrently
@@ -330,3 +365,5 @@ func getData(){
 ## RESOURCES
 - https://go.dev/doc/ - official docs
 - https://www.youtube.com/watch?v=yyUHQIec83I&t=2291s&ab_channel=TechWorldwithNana - YouTube, Thanks Nana
+- https://mj-go.in/golang/crud-rest-api-with-gorilla-mux - CRUD operations in go using mux
+- https://www.youtube.com/playlist?list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa - YouTube, Thanks Hitesh
