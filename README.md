@@ -65,6 +65,22 @@ func main() {
 }
 ```
 
+### defer
+- putting a ```defer``` keyword before the statement, makes it run at the near end of program, reverse order (LIFO) in case of multiple defers
+```
+defer fmt.Println("World")
+fmt.Println("hello")
+
+=> hello World
+```
+```
+defer fmt.Println("One")
+defer fmt.Println("Two")
+defer fmt.Println("Three")
+
+=> Three Two One
+```
+
 ### Arrays and Slices in go
 - arrays
 
@@ -252,7 +268,15 @@ email: "vasu4arodev@gmail.com"
 
 fmt.Println(userOne.name)
 ```
-
+- printing struct data
+  1) %v
+     ```
+     {hitesh, 20, hitesh@gmail.com}
+     ```
+  2) %+v
+     ```
+     {name: hitesh, age: 20, email: hitesh@gmail.com}
+     ```
 ## Multiple file structure
 - go files within a same package or folder are interconnected and should work under a single package
 - Example inside folder 'hello';
