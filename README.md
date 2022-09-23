@@ -27,6 +27,9 @@
 ### LEXER
 responsible for handling the semi-colons and other syntax stuff
 
+### ```go mod tidy```
+go mod tidy ensures that the go.mod file matches the source code in the module. It adds any missing module requirements necessary to build the current module’s packages and dependencies, and it removes requirements on modules that don’t provide any relevant packages. It also adds any missing entries to go.sum and removes unnecessary entries.
+
 ### Basic Program
 ```
 package main
@@ -384,6 +387,26 @@ fmt.Print(finalJson)
 
 fmt.Print(string(finaJson))
 }
+```
+- json.parse, storing fetched json data using structs
+```
+jsonData := []byte(`
+	{
+		"name": "vasu",
+		"Price": 288
+	}
+`)
+
+var newData course
+checkValid := json.Valid(jsonData)
+
+if checkValid {
+	json.Unmarshal(jsonData, &newData)
+} else {
+	fmt.Print("not valid")
+}
+
+fmt.Printf("%#v\n", newData)
 ```
 
 ## Concurrency
