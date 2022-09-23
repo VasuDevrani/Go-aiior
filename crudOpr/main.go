@@ -14,6 +14,7 @@ import (
 	"encoding/json"
 )
 
+// models in the form of structs
 type Movie struct{
 	ID string `json:"id"`
 	Isbn string `json:"isbn"`
@@ -26,6 +27,7 @@ type Director struct{
 	Lastname string `jaon:"lastname"`
 }
 
+// database array
 var movies []Movie
 
 // controllers
@@ -88,6 +90,10 @@ func updateMovies(w http.ResponseWriter, r *http.Request){
 	}
 }
 
+func homePage(w http.ResponseWriter, r *http.Request){
+	w.Write([]byte("<h1>This is the home page</h1>"))
+}
+
 func main(){
 	// creator the router instance
 	r := mux.NewRouter();
@@ -96,6 +102,7 @@ func main(){
 
 	movies = append(movies, Movie{ID: "2", Isbn: "213876", Title: "Second Movie", Director: &Director{Firstname: "rahul", Lastname: "bishnoi"}})
 
+	r.HandleFunc("/", homePage).Methods("GET")
 	r.HandleFunc("/movies", getMovies).Methods("GET")
 	r.HandleFunc("/movies/{id}", getMovie).Methods("GET")
 	r.HandleFunc("/movies", createMovie).Methods("POST")
