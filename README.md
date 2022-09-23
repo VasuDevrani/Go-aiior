@@ -27,6 +27,9 @@
 ### LEXER
 responsible for handling the semi-colons and other syntax stuff
 
+### ```go mod tidy```
+go mod tidy ensures that the go.mod file matches the source code in the module. It adds any missing module requirements necessary to build the current module’s packages and dependencies, and it removes requirements on modules that don’t provide any relevant packages. It also adds any missing entries to go.sum and removes unnecessary entries.
+
 ### Basic Program
 ```
 package main
@@ -304,6 +307,108 @@ import {
 - for export variables or functions write them in capitalized form like ```GetData()```
 - for import ```helper.GetData()```
 
+### http calls
+- get request
+```
+import (
+   "fmt"
+   "net/http"
+   "io/ioutil"
+)
+
+response, err := http.Get("http://hello.com")
+if(err != nil)
+   panic(err)
+
+// here content is of type []uint8 that is converted into string
+
+content, err := ioutil.ReadAll(response.Body)
+fmt.Print(string(content))
+fmt.Printf("%T", content)
+
+```
+- url decoding
+```
+const url = "http://local_mania.org"
+func main(){
+	result, _ := url.Parse(url)
+	fmt.Println(url.Scheme)
+	fmt.Println(url.Host)
+	fmt.Println(url.RawQuery)
+	
+	var qParams = url.query() //gives the map of queries 
+}
+```
+- url contruction
+```
+var url = &url.URL{
+   Scheme: "https",
+   Host: "",
+   Path: ""
+}
+
+anotherURL = url.String();
+```
+
+- POST req
+```
+const URL = "http://fakejson.com"
+
+requestBody := strings.NewReader(`
+    {
+    	"courseName": "Btech",
+	"duration": "4 yrs"
+    }
+`)
+
+response, _ := http.Post(URL, "application/json", requestBody);
+```
+- JSON formatting
+
+```
+type course struct {
+	Name string `json:"website"` //following json script used as key
+	Price int
+	Password string `json:"-"` // "-" is left in main json
+	Tags []string `json:"tags,omitempty"` //omitmpty removes nil fields
+}
+
+func main() {
+
+courses := []course{
+	{"ReactJS", 299, "abc123", []string{"mern stack", "new course"}},
+	{"JavaScript", 229, "def123", []string{"frontend", "Month ago"}},
+}
+
+finalJson, err := json.MarshalIndent(courses, "", "\t")
+
+// bytes format json
+fmt.Print(finalJson)
+
+fmt.Print(string(finaJson))
+}
+```
+- json.parse, storing fetched json data using structs
+```
+jsonData := []byte(`
+	{
+		"name": "vasu",
+		"Price": 288
+	}
+`)
+
+var newData course
+checkValid := json.Valid(jsonData)
+
+if checkValid {
+	json.Unmarshal(jsonData, &newData)
+} else {
+	fmt.Print("not valid")
+}
+
+fmt.Printf("%#v\n", newData)
+```
+
 ## Concurrency
 - This is like creating a asynchronous path for long duartion work like fetching data from api or sending automated mails
 - Lets say we have a function ```sendTicket``` that takes a long 10 sec duration, when multiple users are on the application this could block the go program thread flow and block other users from using the app concurrently
@@ -330,3 +435,5 @@ func getData(){
 ## RESOURCES
 - https://go.dev/doc/ - official docs
 - https://www.youtube.com/watch?v=yyUHQIec83I&t=2291s&ab_channel=TechWorldwithNana - YouTube, Thanks Nana
+- https://mj-go.in/golang/crud-rest-api-with-gorilla-mux - CRUD operations in go using mux
+- https://www.youtube.com/playlist?list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa - YouTube, Thanks Hitesh
