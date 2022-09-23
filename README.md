@@ -310,11 +310,19 @@ import {
 import (
    "fmt"
    "net/http"
+   "io/ioutil"
 )
 
 response, err := http.Get("http://hello.com")
 if(err != nil)
-fmt.Println("error occured", err)
+   panic(err)
+
+// here content is of type []uint8 that is converted into string
+
+content, err := ioutil.ReadAll(response.Body)
+fmt.Print(string(content))
+fmt.Printf("%T", content)
+
 ```
 - url decoding
 ```
@@ -337,6 +345,45 @@ var url = &url.URL{
 }
 
 anotherURL = url.String();
+```
+
+- POST req
+```
+const URL = "http://fakejson.com"
+
+requestBody := strings.NewReader(`
+    {
+    	"courseName": "Btech",
+	"duration": "4 yrs"
+    }
+`)
+
+response, _ := http.Post(URL, "application/json", requestBody);
+```
+- JSON formatting
+
+```
+type course struct {
+	Name string `json:"website"` //following json script used as key
+	Price int
+	Password string `json:"-"` // "-" is left in main json
+	Tags []string `json:"tags,omitempty"` //omitmpty removes nil fields
+}
+
+func main() {
+
+courses := []course{
+	{"ReactJS", 299, "abc123", []string{"mern stack", "new course"}},
+	{"JavaScript", 229, "def123", []string{"frontend", "Month ago"}},
+}
+
+finalJson, err := json.MarshalIndent(courses, "", "\t")
+
+// bytes format json
+fmt.Print(finalJson)
+
+fmt.Print(string(finaJson))
+}
 ```
 
 ## Concurrency
